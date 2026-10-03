@@ -1,0 +1,65 @@
+{
+  "edges": [
+    {
+      "from": "site2",
+      "id": "site2-s3_bucket-0",
+      "kind": "uses",
+      "props": {},
+      "to": "s3_bucket"
+    },
+    {
+      "from": "site2",
+      "id": "site2-cf_dist-0",
+      "kind": "uses",
+      "props": {},
+      "to": "cf_dist"
+    }
+  ],
+  "groups": [
+    {
+      "id": "tc5_second_repo_dev",
+      "kind": "environment",
+      "name": "tc5-second-repo-dev",
+      "ref": {
+        "id": "env_01a102976f9ebeb1898aa48dba61e4f7",
+        "kind": "environment"
+      }
+    }
+  ],
+  "nodes": [
+    {
+      "group": "tc5_second_repo_dev",
+      "id": "site2",
+      "name": "tc5-second-repo-site2",
+      "props": {
+        "bucket": "tc5-second-repo-site2-origin",
+        "cdn": "CloudFront"
+      },
+      "type": "service.static"
+    },
+    {
+      "group": "tc5_second_repo_dev",
+      "id": "s3_bucket",
+      "name": "S3 Origin Bucket (site2)",
+      "props": {
+        "name": "tc5-second-repo-site2-origin",
+        "region": "us-east-1"
+      },
+      "type": "resource.bucket"
+    },
+    {
+      "group": "tc5_second_repo_dev",
+      "id": "cf_dist",
+      "name": "CloudFront Distribution (site2)",
+      "props": {
+        "uri": "https://tc5-second-repo-site2.cloudfront.net"
+      },
+      "type": "resource.other"
+    }
+  ],
+  "scope": {
+    "id": "svc_01a102a2221eb096d851f2456387ded9",
+    "kind": "service"
+  },
+  "version": 1
+}
